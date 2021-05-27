@@ -8,7 +8,6 @@ use App\Twill\Capsules\Countries\Models\Country;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
-use App\Transformers\CountryPage as CountryPageTransformer;
 
 class CountryRepository extends ModuleRepository
 {
