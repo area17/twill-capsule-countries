@@ -1,6 +1,12 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
+    @formField('medias', [
+        'name' => 'role-country-cover',
+        'label' => 'Cover image',
+        'max' => 1,
+    ])
+
     @component('twill::partials.form.utils._columns')
         @slot('left')
             @formField('input', [
@@ -43,6 +49,7 @@
 @section('fieldsets')
     <a17-fieldset title="{{__('Cities')}}" id="cities" :open="true">
         @formField('browser', [
+            'routePrefix' => 'destinations',
             'moduleName' => 'cities',
             'name' => 'cities',
             'label' => __('Cities'),

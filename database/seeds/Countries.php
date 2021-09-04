@@ -53,8 +53,7 @@ class Countries extends Seeder
         $name = null;
 
         $nameSource =
-            filled(is_bool($country['independent'] ?? null)) &&
-            is_array($country['independent'] ?? null)
+            filled(is_bool($country['independent'] ?? null)) && is_array($country['independent'] ?? null)
                 ? $country['independent']
                 : $country;
 
@@ -66,15 +65,12 @@ class Countries extends Seeder
             }
         }
 
-        $name = filled($name)
-            ? $name
-            : $country["name_$locale"] ?? ($nameSource["name_$locale"] ?? null);
+        $name = filled($name) ? $name : $country["name_$locale"] ?? ($nameSource["name_$locale"] ?? null);
 
         $name = filled($name)
             ? $name
             : $country['translations'][$locales[$locale]]['common'] ??
-                ($nameSource['translations'][$locales[$locale]]['common'] ??
-                    null);
+                ($nameSource['translations'][$locales[$locale]]['common'] ?? null);
 
         //        echo "---------------------------------------\n";
         //        for ($x = 0; $x < strlen($name); $x++) {
@@ -116,18 +112,12 @@ class Countries extends Seeder
 
                 'it' => $this->getName($country, 'it'),
 
-                'pt-br' =>
-                    $this->getName($country, 'pt_br') ??
-                    $this->getName($country, 'pt'),
+                'pt-br' => $this->getName($country, 'pt_br') ?? $this->getName($country, 'pt'),
             ],
 
-            'latitude' =>
-                $country['latitude'] ??
-                ($country['geo']['latitude_desc'] ?? null),
+            'latitude' => $country['latitude'] ?? ($country['geo']['latitude_desc'] ?? null),
 
-            'longitude' =>
-                $country['longitude'] ??
-                ($country['geo']['longitude_desc'] ?? null),
+            'longitude' => $country['longitude'] ?? ($country['geo']['longitude_desc'] ?? null),
         ]);
     }
 
@@ -147,16 +137,12 @@ class Countries extends Seeder
 
                 'it' => $this->getName($city, 'it'),
 
-                'pt-br' =>
-                    $this->getName($city, 'pt_br') ??
-                    $this->getName($city, 'pt'),
+                'pt-br' => $this->getName($city, 'pt_br') ?? $this->getName($city, 'pt'),
             ],
 
-            'latitude' =>
-                $city['latitude'] ?? ($city['geo']['latitude_desc'] ?? null),
+            'latitude' => $city['latitude'] ?? ($city['geo']['latitude_desc'] ?? null),
 
-            'longitude' =>
-                $city['longitude'] ?? ($city['geo']['longitude_desc'] ?? null),
+            'longitude' => $city['longitude'] ?? ($city['geo']['longitude_desc'] ?? null),
         ]);
 
         $city->country_id = $country->id;
